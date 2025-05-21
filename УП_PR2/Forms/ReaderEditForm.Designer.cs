@@ -32,7 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReaderEditForm));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonEditPartner = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPost = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtWorkPlace = new System.Windows.Forms.TextBox();
+            this.buttonAddReader = new System.Windows.Forms.Button();
+            this.buttonEditReader = new System.Windows.Forms.Button();
             this.buttonMenu = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -45,12 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewReaders = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buttonAddPartner = new System.Windows.Forms.Button();
-            this.txtWorkPlace = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtDateOfBirth = new System.Windows.Forms.TextBox();
-            this.txtPost = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReaders)).BeginInit();
@@ -65,13 +65,13 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtPost);
-            this.groupBox1.Controls.Add(this.txtDateOfBirth);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtWorkPlace);
-            this.groupBox1.Controls.Add(this.buttonAddPartner);
-            this.groupBox1.Controls.Add(this.buttonEditPartner);
+            this.groupBox1.Controls.Add(this.buttonAddReader);
+            this.groupBox1.Controls.Add(this.buttonEditReader);
             this.groupBox1.Controls.Add(this.buttonMenu);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtName);
@@ -91,19 +91,81 @@
             this.groupBox1.TabIndex = 46;
             this.groupBox1.TabStop = false;
             // 
-            // buttonEditPartner
+            // label6
             // 
-            this.buttonEditPartner.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonEditPartner.AutoSize = true;
-            this.buttonEditPartner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(43)))), ((int)(((byte)(1)))));
-            this.buttonEditPartner.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEditPartner.Location = new System.Drawing.Point(15, 377);
-            this.buttonEditPartner.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonEditPartner.Name = "buttonEditPartner";
-            this.buttonEditPartner.Size = new System.Drawing.Size(655, 57);
-            this.buttonEditPartner.TabIndex = 23;
-            this.buttonEditPartner.Text = "Редактировать";
-            this.buttonEditPartner.UseVisualStyleBackColor = false;
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(9, 280);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(137, 32);
+            this.label6.TabIndex = 50;
+            this.label6.Text = "Должность";
+            // 
+            // txtPost
+            // 
+            this.txtPost.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtPost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(180)))), ((int)(((byte)(251)))));
+            this.txtPost.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtPost.Location = new System.Drawing.Point(15, 316);
+            this.txtPost.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPost.Name = "txtPost";
+            this.txtPost.Size = new System.Drawing.Size(305, 39);
+            this.txtPost.TabIndex = 49;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(9, 190);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 32);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Место работы";
+            // 
+            // txtWorkPlace
+            // 
+            this.txtWorkPlace.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtWorkPlace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(180)))), ((int)(((byte)(251)))));
+            this.txtWorkPlace.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtWorkPlace.Location = new System.Drawing.Point(15, 226);
+            this.txtWorkPlace.Margin = new System.Windows.Forms.Padding(4);
+            this.txtWorkPlace.Name = "txtWorkPlace";
+            this.txtWorkPlace.Size = new System.Drawing.Size(305, 39);
+            this.txtWorkPlace.TabIndex = 46;
+            // 
+            // buttonAddReader
+            // 
+            this.buttonAddReader.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonAddReader.AutoSize = true;
+            this.buttonAddReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(43)))), ((int)(((byte)(1)))));
+            this.buttonAddReader.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddReader.Location = new System.Drawing.Point(15, 441);
+            this.buttonAddReader.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAddReader.Name = "buttonAddReader";
+            this.buttonAddReader.Size = new System.Drawing.Size(655, 57);
+            this.buttonAddReader.TabIndex = 44;
+            this.buttonAddReader.Text = "Добавить читателя";
+            this.buttonAddReader.UseVisualStyleBackColor = false;
+            this.buttonAddReader.Click += new System.EventHandler(this.buttonAddReader_Click);
+            // 
+            // buttonEditReader
+            // 
+            this.buttonEditReader.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonEditReader.AutoSize = true;
+            this.buttonEditReader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(43)))), ((int)(((byte)(1)))));
+            this.buttonEditReader.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonEditReader.Location = new System.Drawing.Point(15, 377);
+            this.buttonEditReader.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonEditReader.Name = "buttonEditReader";
+            this.buttonEditReader.Size = new System.Drawing.Size(655, 57);
+            this.buttonEditReader.TabIndex = 23;
+            this.buttonEditReader.Text = "Редактировать";
+            this.buttonEditReader.UseVisualStyleBackColor = false;
+            this.buttonEditReader.Click += new System.EventHandler(this.buttonEditReader_Click);
             // 
             // buttonMenu
             // 
@@ -117,6 +179,7 @@
             this.buttonMenu.TabIndex = 41;
             this.buttonMenu.Text = "Главная";
             this.buttonMenu.UseVisualStyleBackColor = false;
+            this.buttonMenu.Click += new System.EventHandler(this.buttonMenu_Click);
             // 
             // label8
             // 
@@ -162,6 +225,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(305, 39);
             this.txtPhone.TabIndex = 28;
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // label5
             // 
@@ -234,6 +298,7 @@
             this.dataGridViewReaders.RowHeadersWidth = 51;
             this.dataGridViewReaders.Size = new System.Drawing.Size(1876, 362);
             this.dataGridViewReaders.TabIndex = 45;
+            this.dataGridViewReaders.SelectionChanged += new System.EventHandler(this.dataGridViewReaders_SelectionChanged);
             // 
             // pictureBox1
             // 
@@ -246,76 +311,12 @@
             this.pictureBox1.TabIndex = 44;
             this.pictureBox1.TabStop = false;
             // 
-            // buttonAddPartner
+            // dateTimePicker1
             // 
-            this.buttonAddPartner.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonAddPartner.AutoSize = true;
-            this.buttonAddPartner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(43)))), ((int)(((byte)(1)))));
-            this.buttonAddPartner.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddPartner.Location = new System.Drawing.Point(15, 441);
-            this.buttonAddPartner.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonAddPartner.Name = "buttonAddPartner";
-            this.buttonAddPartner.Size = new System.Drawing.Size(655, 57);
-            this.buttonAddPartner.TabIndex = 44;
-            this.buttonAddPartner.Text = "Добавить партнера";
-            this.buttonAddPartner.UseVisualStyleBackColor = false;
-            // 
-            // txtWorkPlace
-            // 
-            this.txtWorkPlace.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtWorkPlace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(180)))), ((int)(((byte)(251)))));
-            this.txtWorkPlace.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtWorkPlace.Location = new System.Drawing.Point(15, 226);
-            this.txtWorkPlace.Margin = new System.Windows.Forms.Padding(4);
-            this.txtWorkPlace.Name = "txtWorkPlace";
-            this.txtWorkPlace.Size = new System.Drawing.Size(305, 39);
-            this.txtWorkPlace.TabIndex = 46;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(9, 190);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 32);
-            this.label1.TabIndex = 47;
-            this.label1.Text = "Место работы";
-            // 
-            // txtDateOfBirth
-            // 
-            this.txtDateOfBirth.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtDateOfBirth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(180)))), ((int)(((byte)(251)))));
-            this.txtDateOfBirth.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtDateOfBirth.Location = new System.Drawing.Point(15, 134);
-            this.txtDateOfBirth.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDateOfBirth.Name = "txtDateOfBirth";
-            this.txtDateOfBirth.Size = new System.Drawing.Size(305, 39);
-            this.txtDateOfBirth.TabIndex = 48;
-            // 
-            // txtPost
-            // 
-            this.txtPost.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtPost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(180)))), ((int)(((byte)(251)))));
-            this.txtPost.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtPost.Location = new System.Drawing.Point(15, 316);
-            this.txtPost.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPost.Name = "txtPost";
-            this.txtPost.Size = new System.Drawing.Size(305, 39);
-            this.txtPost.TabIndex = 49;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(9, 280);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(137, 32);
-            this.label6.TabIndex = 50;
-            this.label6.Text = "Должность";
+            this.dateTimePicker1.Location = new System.Drawing.Point(14, 133);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(307, 22);
+            this.dateTimePicker1.TabIndex = 52;
             // 
             // ReaderEditForm
             // 
@@ -332,6 +333,7 @@
             this.Text = "Редактирование";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReaderEditForm_FormClosed);
+            this.Load += new System.EventHandler(this.ReaderEditForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -345,7 +347,7 @@
 
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button buttonEditPartner;
+        private System.Windows.Forms.Button buttonEditReader;
         private System.Windows.Forms.Button buttonMenu;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtName;
@@ -358,11 +360,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridViewReaders;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button buttonAddPartner;
+        private System.Windows.Forms.Button buttonAddReader;
         private System.Windows.Forms.TextBox txtWorkPlace;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtDateOfBirth;
         private System.Windows.Forms.TextBox txtPost;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonAddPartner = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -55,18 +54,7 @@
             this.buttonAddPartner.TabIndex = 4;
             this.buttonAddPartner.Text = "Добавить партнера";
             this.buttonAddPartner.UseVisualStyleBackColor = false;
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(43)))), ((int)(((byte)(1)))));
-            this.btnBack.Font = new System.Drawing.Font("Times New Roman", 14.25F);
-            this.btnBack.Location = new System.Drawing.Point(258, 707);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(240, 57);
-            this.btnBack.TabIndex = 5;
-            this.btnBack.Text = "Назад";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.buttonAddPartner.Click += new System.EventHandler(this.buttonAddPartner_Click);
             // 
             // MainForm
             // 
@@ -74,7 +62,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1244, 776);
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.buttonAddPartner);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -91,6 +78,5 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonAddPartner;
-        private System.Windows.Forms.Button btnBack;
     }
 }

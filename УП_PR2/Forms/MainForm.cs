@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using УП_PR2.Forms;
 
 namespace УП_PR2
 {
@@ -22,31 +23,77 @@ namespace УП_PR2
             LoadData();
         }
 
+        public static DateTime CalculateDueDate(DateTime issueDate)
+        {
+            return issueDate.AddDays(14); // Стандартный срок - 14 дней
+        }
+
+        public static int CalculateOverdueDays(DateTime dueDate)
+        {
+            return dueDate < DateTime.Today ? (DateTime.Today - dueDate).Days : 0;
+        }
+
         private void LoadData()
         {
-            using (var conn = new NpgsqlConnection(connectionString))
+            try
             {
-                conn.Open();
+                flowLayoutPanel1.Controls.Clear();
 
-                string query = @"select name, phone, author, book_name, v.total_count, date_of_receipt from vidacha as v
-                    join reader as r on r.reader_id = v.reader_id
-                    join book as b on b.book_id = v.book_id
-                    WHERE v.date_of_return IS NULL 
-                    AND CURRENT_DATE > (v.date_of_receipt + INTERVAL '14 days')";
-
-                using (var cmd = new NpgsqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var conn = new NpgsqlConnection(connectionString))
                 {
-                    while (reader.Read())
+                    conn.Open();
+                    string query = @"SELECT r.reader_id, r.name, r.phone, 
+                                           b.author, b.book_name, v.total_count, 
+                                           v.date_of_receipt
+                                    FROM reader r
+                                    JOIN vidacha v ON r.reader_id = v.reader_id
+                                    JOIN book b ON v.book_id = b.book_id
+                                    WHERE v.date_of_return IS NULL 
+                                    AND CURRENT_DATE > (v.date_of_receipt + INTERVAL '14 days')
+                                    ORDER BY r.name, v.date_of_receipt";
+
+                    using (var cmd = new NpgsqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        Panel panel = CreatePartnerPanel(reader);
-                        flowLayoutPanel1.Controls.Add(panel);
+                        var currentReaderId = -1;
+                        Panel currentPanel = null;
+
+                        while (reader.Read())
+                        {
+                            int readerId = reader.GetInt32(0);
+                            DateTime receiptDate = reader.GetDateTime(6);
+                            DateTime dueDate = CalculateDueDate(receiptDate);
+                            int overdueDays = CalculateOverdueDays(dueDate);
+
+                            if (readerId != currentReaderId)
+                            {
+                                // Создаем новую панель для читателя
+                                currentReaderId = readerId;
+                                currentPanel = CreateReaderPanel(
+                                    reader.GetString(1),
+                                    reader.GetString(2));
+                                flowLayoutPanel1.Controls.Add(currentPanel);
+                            }
+
+                            // Добавляем информацию о книге
+                            AddBookInfo(currentPanel,
+                                reader.GetString(3),
+                                reader.GetString(4),
+                                reader.GetString(5),
+                                receiptDate,
+                                overdueDays);
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}", "Ошибка",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private Panel CreatePartnerPanel(NpgsqlDataReader reader)
+        private Panel CreateReaderPanel(string readerName, string phone)
         {
             Panel panel = new Panel()
             {
@@ -54,34 +101,44 @@ namespace УП_PR2
                 BorderStyle = BorderStyle.Fixed3D,
                 Margin = new Padding(10),
                 BackColor = Color.FromArgb(0x64, 0x2B, 0x01),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Tag = readerName
             };
 
-            panel.Click += (s, e) => OpenReadersEditForm();
+            panel.Click += (s, e) => OpenReaderEditForm();
 
-            Label ReaderAndPhone = new Label()
+            Label lblReader = new Label()
             {
                 Location = new Point(10, 10),
-                Text = reader["name"] + "/" + reader["phone"],
+                Text = $"{readerName}/{phone}",
                 AutoSize = true,
-                Font = new Font("Times New Roman", 16),
+                Font = new Font("Times New Roman", 16, FontStyle.Bold),
+                ForeColor = Color.White
             };
 
-            Label Author = new Label()
-            {
-                Location = new Point(10, 40),
-                Text = reader["author"] + "/" + reader["book_name"] + "/" + reader["total_count"] + "/" + reader["date_of_receipt"],
-                AutoSize = true,
-                Font = new Font("Times New Roman", 16),
-            };
-
-            panel.Controls.Add(ReaderAndPhone);
-            panel.Controls.Add(Author);
-
+            panel.Controls.Add(lblReader);
             return panel;
         }
 
-        private void OpenReadersEditForm()
+        private void AddBookInfo(Panel panel, string author, string bookName,
+                               string count, DateTime receiptDate, int overdueDays)
+        {
+            int y = panel.Controls.Count * 30 + 10;
+
+            Label lblBook = new Label()
+            {
+                Location = new Point(20, y),
+                Text = $"{author}/{bookName}/{count}/{receiptDate:dd.MM.yyyy}/{overdueDays} дней",
+                AutoSize = true,
+                Font = new Font("Times New Roman", 14),
+                ForeColor = Color.White
+            };
+
+            panel.Height += 30; 
+            panel.Controls.Add(lblBook);
+        }
+
+        private void OpenReaderEditForm()
         {
             ReaderEditForm editForm = new ReaderEditForm();
             editForm.FormClosed += (s, args) => LoadData();
@@ -100,5 +157,12 @@ namespace УП_PR2
             mainForm.Show();
             this.Hide();
         }
-    }
+
+        private void buttonAddPartner_Click(object sender, EventArgs e)
+        {
+            ReaderAddForm readerAddForm = new ReaderAddForm();
+            readerAddForm.Show();
+            this.Hide();
+        }
+    } 
 }
